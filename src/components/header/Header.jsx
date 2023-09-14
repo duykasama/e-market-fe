@@ -1,4 +1,4 @@
-import logo from "/vite.svg";
+import logo from "/1.png";
 
 function Header() {
   const handleSearch = (event) => {
@@ -7,7 +7,7 @@ function Header() {
   };
   return (
     <header className="h-full w-full flex items-center justify-between p-4">
-      <img src={logo} alt="Logo" />
+      <img src={logo} alt="Logo" width={100}/>
       <form onSubmit={handleSearch} className="flex gap-2">
         <input
           type="text"

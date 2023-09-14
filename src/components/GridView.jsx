@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "./Pagination";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import AddNewModal from "./modal/AddNewModal";
+import AddNewCustomer from "./modal/AddNewCustomer";
+import dataFields from "../data/fields.json";
 
 function GridView({ fields, data, title }) {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +15,7 @@ function GridView({ fields, data, title }) {
 
   return (
     <>
-      {showModal && <AddNewModal />}
+      {showModal && <AddNewCustomer setShowModal={setShowModal} />}
       <div className="p-4 bg-slate-400 rounded-lg w-full h-full grid grid-rows-6 gap-4 shadow-lg shadow-gray-600">
         <div className="flex justify-between items-center row-span-1">
           <h2 className="text-2xl font-semibold">{title}</h2>
