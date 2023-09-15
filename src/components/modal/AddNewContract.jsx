@@ -1,76 +1,67 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function AddNewCustomer({onCloseModal}) {
-  const handleAddCustomer = (event) => {
+function AddNewContract({ onCloseModal }) {
+  const handleAddContract = (event) => {
     event.preventDefault();
-    console.log("Add new customer");
+    console.log("Add contract");
   };
-
   return (
     <form
-      onSubmit={handleAddCustomer}
+      onSubmit={handleAddContract}
       className="absolute bg-slate-700 p-10 rounded-lg shadow-lg shadow-black flex flex-col justify-center items-center modal"
     >
       <div className="w-full flex justify-end">
-        <button onClick={() => onCloseModal()} className="p-2 text-2xl text-white rounded-lg hover:shadow-lg hover:shadow-black hover:bg-slate-400 hover:text-black active:scale-95 transition">
+        <button
+          onClick={() => onCloseModal()}
+          className="p-2 text-2xl text-white rounded-lg hover:shadow-lg hover:shadow-black hover:bg-slate-400 hover:text-black active:scale-95 transition"
+        >
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-      <h2 className="text-3xl font-bold text-white mb-12">Add new customer</h2>
+      <h2 className="text-3xl font-bold text-white mb-12">Add new contract</h2>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-10">
           <label htmlFor="firstName" className="text-white font-semibold">
-            First name
+            Customer
           </label>
           <input
-            type="text"
-            name="firstName"
-            id="firstName"
+            type="number"
+            name="customerId"
+            id="customerId"
             className="p-1 rounded-md indent-1"
           />
         </div>
         <div className="flex justify-between gap-10">
           <label htmlFor="lastName" className="text-white font-semibold">
-            Last name
+            Apartment
           </label>
           <input
-            type="text"
-            name="lastName"
-            id="lastName"
+            type="number"
+            name="apartmentId"
+            id="apartmentId"
             className="p-1 rounded-md indent-1"
           />
         </div>
         <div className="flex justify-between gap-10">
           <label htmlFor="address" className="text-white font-semibold">
-            Address
+            Start date
           </label>
           <input
-            type="text"
-            name="address"
-            id="address"
+            type="date"
+            name="startDate"
+            id="startDate"
             className="p-1 rounded-md indent-1"
           />
         </div>
         <div className="flex justify-between gap-10">
           <label htmlFor="age" className="text-white font-semibold">
-            Age
+            End date
           </label>
           <input
-            type="number"
-            name="age"
-            id="age"
-            className="p-1 rounded-md indent-1"
-          />
-        </div>
-        <div className="flex justify-between items-center gap-10">
-          <label htmlFor="status" className="text-white font-semibold">
-            Status
-          </label>
-          <input
-            type="text"
-            name="status"
-            id="status"
+            type="date"
+            name="endDate"
+            id="endDate"
             className="p-1 rounded-md indent-1"
           />
         </div>
@@ -84,4 +75,4 @@ function AddNewCustomer({onCloseModal}) {
   );
 }
 
-export default AddNewCustomer;
+export default AddNewContract;

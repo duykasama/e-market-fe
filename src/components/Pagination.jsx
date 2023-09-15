@@ -1,5 +1,4 @@
 import {
-  faArrowLeft,
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -10,21 +9,21 @@ function Pagination() {
   return (
     <nav>
       <ul className="flex justify-center items-center gap-4">
-        <li className="p-1 border border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer">
+        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black">
           <Link>
             <FontAwesomeIcon icon={faChevronLeft} />
           </Link>
         </li>
-        <li className="p-1 border border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer">
+        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition font-semibold shadow-sm hover:shadow-black">
           <Link>1</Link>
         </li>
-        <li className="p-1 border border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer">
+        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition font-semibold shadow-sm hover:shadow-black">
           <Link>2</Link>
         </li>
-        <li className="p-1 border border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer">
+        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition font-semibold shadow-sm hover:shadow-black">
           <Link>3</Link>
         </li>
-        <li className="p-1 border border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer">
+        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black">
           <Link>
             <FontAwesomeIcon icon={faChevronRight} />
           </Link>

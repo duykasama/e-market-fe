@@ -51,6 +51,7 @@ function FileUploader({ setShowFileUploader }) {
           onChange={handleFilesChange}
           type="file"
           multiple
+          accept=".csv"
           hidden
           ref={inputFileRef}
         />

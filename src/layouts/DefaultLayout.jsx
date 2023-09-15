@@ -8,6 +8,8 @@ import Apartments from "../pages/Apartments";
 import customerList from "../data/customers.json";
 import contractList from "../data/contracts.json";
 import apartmentList from "../data/apartments.json";
+import UploadFiles from "../pages/UploadFiles";
+import NotFound from "../pages/NotFound";
 
 function DefaultLayout() {
   return (
@@ -33,6 +35,8 @@ function DefaultLayout() {
             path="/apartments"
             element={<Apartments apartments={apartmentList} />}
           />
+          <Route path="/upload-files" element={<UploadFiles />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
