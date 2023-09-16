@@ -1,11 +1,43 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMemo, useState, useTransition } from "react";
+import useCustomers from "../../hooks/useCustomers";
+import useApartments from "../../hooks/useApartments";
+import { v4 } from "uuid";
+import axios from "../../lib/api/axios";
 
 function AddNewContract({ onCloseModal }) {
-  const handleAddContract = (event) => {
+  const { customers } = useCustomers();
+  const { apartments } = useApartments();
+
+  let formData = {
+    customerId: "",
+    apartmentId: "",
+    startDate: "",
+    endDate: "",
+  };
+
+  const handleAddContract = async (event) => {
     event.preventDefault();
+    console.log(formData);
+    const response = await axios.post(
+      "/contracts",
+      {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      },
+      { params: formData }
+    );
     console.log("Add contract");
   };
+
+  const handleFormDataChange = (event) => {
+    formData = { ...formData, [event.target.name]: event.target.value };
+  };
+
   return (
     <form
       onSubmit={handleAddContract}
@@ -22,45 +54,62 @@ function AddNewContract({ onCloseModal }) {
       <h2 className="text-3xl font-bold text-white mb-12">Add new contract</h2>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-10">
-          <label htmlFor="firstName" className="text-white font-semibold">
+          <label htmlFor="customerId" className="text-white font-semibold">
             Customer
           </label>
-          <input
-            type="number"
+          <select
             name="customerId"
-            id="customerId"
-            className="p-1 rounded-md indent-1"
-          />
+            onChange={handleFormDataChange}
+            className="p-1 rounded-md w-40"
+          >
+            <option hidden>Choose customer</option>
+            {customers &&
+              customers.map((customer) => (
+                <option key={v4()} value={customer.id}>
+                  {customer.firstName} {customer.lastName}
+                </option>
+              ))}
+          </select>
         </div>
         <div className="flex justify-between gap-10">
-          <label htmlFor="lastName" className="text-white font-semibold">
+          <label htmlFor="apartmentId" className="text-white font-semibold">
             Apartment
           </label>
-          <input
-            type="number"
+          <select
             name="apartmentId"
             id="apartmentId"
-            className="p-1 rounded-md indent-1"
-          />
+            onChange={handleFormDataChange}
+            className="p-1 rounded-md w-40"
+          >
+            <option hidden>Choose apartment</option>
+            {apartments &&
+              apartments.map((apartment) => (
+                <option key={v4()} value={apartment.id}>
+                  {apartment.address}
+                </option>
+              ))}
+          </select>
         </div>
         <div className="flex justify-between gap-10">
-          <label htmlFor="address" className="text-white font-semibold">
+          <label htmlFor="startDate" className="text-white font-semibold">
             Start date
           </label>
           <input
             type="date"
             name="startDate"
+            onChange={handleFormDataChange}
             id="startDate"
             className="p-1 rounded-md indent-1"
           />
         </div>
         <div className="flex justify-between gap-10">
-          <label htmlFor="age" className="text-white font-semibold">
+          <label htmlFor="endDate" className="text-white font-semibold">
             End date
           </label>
           <input
             type="date"
             name="endDate"
+            onChange={handleFormDataChange}
             id="endDate"
             className="p-1 rounded-md indent-1"
           />

@@ -24,7 +24,6 @@ const useCustomers = () => {
     };
     getCustomers();
   }, []);
-
   return { customers };
 };
 
