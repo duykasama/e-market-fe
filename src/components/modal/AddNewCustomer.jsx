@@ -1,10 +1,39 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "../../lib/api/axios";
+import { useState } from "react";
 
-function AddNewCustomer({onCloseModal}) {
-  const handleAddCustomer = (event) => {
+function AddNewCustomer({ onCloseModal }) {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    age: 0,
+    status: "unknown",
+  });
+
+  const handleAddCustomer = async (event) => {
     event.preventDefault();
+    const response = await axios.post(
+      "/customers",
+      {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      },
+      { params: formData }
+    );
+    console.log(formData);
     console.log("Add new customer");
+  };
+
+  const handleFormDataChange = (event) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   return (
@@ -13,7 +42,10 @@ function AddNewCustomer({onCloseModal}) {
       className="absolute bg-slate-700 p-10 rounded-lg shadow-lg shadow-black flex flex-col justify-center items-center modal"
     >
       <div className="w-full flex justify-end">
-        <button onClick={() => onCloseModal()} className="p-2 text-2xl text-white rounded-lg hover:shadow-lg hover:shadow-black hover:bg-slate-400 hover:text-black active:scale-95 transition">
+        <button
+          onClick={() => onCloseModal()}
+          className="p-2 text-2xl text-white rounded-lg hover:shadow-lg hover:shadow-black hover:bg-slate-400 hover:text-black active:scale-95 transition"
+        >
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
@@ -27,6 +59,7 @@ function AddNewCustomer({onCloseModal}) {
             type="text"
             name="firstName"
             id="firstName"
+            onChange={handleFormDataChange}
             className="p-1 rounded-md indent-1"
           />
         </div>
@@ -38,6 +71,7 @@ function AddNewCustomer({onCloseModal}) {
             type="text"
             name="lastName"
             id="lastName"
+            onChange={handleFormDataChange}
             className="p-1 rounded-md indent-1"
           />
         </div>
@@ -49,6 +83,7 @@ function AddNewCustomer({onCloseModal}) {
             type="text"
             name="address"
             id="address"
+            onChange={handleFormDataChange}
             className="p-1 rounded-md indent-1"
           />
         </div>
@@ -60,6 +95,7 @@ function AddNewCustomer({onCloseModal}) {
             type="number"
             name="age"
             id="age"
+            onChange={handleFormDataChange}
             className="p-1 rounded-md indent-1"
           />
         </div>
@@ -71,6 +107,7 @@ function AddNewCustomer({onCloseModal}) {
             type="text"
             name="status"
             id="status"
+            onChange={handleFormDataChange}
             className="p-1 rounded-md indent-1"
           />
         </div>

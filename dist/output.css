@@ -538,10 +538,6 @@ video {
   position: absolute;
 }
 
-.start-0 {
-  inset-inline-start: 0px;
-}
-
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -598,10 +594,6 @@ video {
   margin-top: 2rem;
 }
 
-.block {
-  display: block;
-}
-
 .flex {
   display: flex;
 }
@@ -626,11 +618,6 @@ video {
   height: 100%;
 }
 
-.max-h-min {
-  max-height: -moz-min-content;
-  max-height: min-content;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -648,25 +635,20 @@ video {
   width: 100%;
 }
 
-.max-w-min {
-  max-width: -moz-min-content;
-  max-width: min-content;
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
 
-.grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid-cols-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .grid-rows-6 {
