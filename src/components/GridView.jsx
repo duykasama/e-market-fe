@@ -10,6 +10,9 @@ import ConfirmationModal from "./modal/ConfirmationModal";
 import FileUploader from "./modal/FileUploader";
 import { v4 } from "uuid";
 import { useLocation } from "react-router-dom";
+import ContractList from "./ContractList";
+import ApartmentList from "./ApartmentList";
+import CustomerList from "./CustomerList";
 
 function GridView({ fields, data, title, Modal }) {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +27,7 @@ function GridView({ fields, data, title, Modal }) {
       {showModal && <Modal onCloseModal={() => setShowModal(false)} />}
       <div className="p-4 bg-slate-400 rounded-lg w-full h-full grid grid-rows-6 gap-4 shadow-lg shadow-gray-600">
         <div className="flex justify-between items-center row-span-1">
-          <h2 className="text-2xl font-semibold">{title}</h2>
+          <h2 className="text-4xl font-semibold">{title}</h2>
           <div>
             <button
               onClick={() => setShowModal(true)}
@@ -35,7 +38,12 @@ function GridView({ fields, data, title, Modal }) {
             </button>
           </div>
         </div>
-        <table className="row-start-2 row-end-6">
+        <div className="row-start-2 row-end-6">
+          {title === "Customers" && <CustomerList customers={data} />}
+          {title === "Apartments" && <ApartmentList apartments={data} />}
+          {title === "Contracts" && <ContractList contracts={data} />}
+        </div>
+        {/* <table className="row-start-2 row-end-6">
           <thead>
             <tr>
               <th>NO.</th>
@@ -57,7 +65,7 @@ function GridView({ fields, data, title, Modal }) {
                 </tr>
               ))}
           </tbody>
-        </table>
+        </table> */}
         <div className="row-span-1 row-end-7 flex justify-center items-center">
           <Pagination />
         </div>
