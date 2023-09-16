@@ -1,11 +1,38 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import axios from "../../lib/api/axios";
 
 function AddNewApartment({ onCloseModal }) {
-  const handleAddApartment = (event) => {
+  const [formData, setFormData] = useState({
+    address: "",
+    rentalPrice: 0,
+    numberOfRooms: 0,
+  });
+
+  const handleAddApartment = async (event) => {
     event.preventDefault();
+    const response = await axios.post(
+      "/apartments",
+      {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true
+      },
+      { params: formData }
+    );
     console.log("add apartment");
   };
+
+  const handleFormDataChange = (event) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
   return (
     <form
       onSubmit={handleAddApartment}
@@ -28,6 +55,7 @@ function AddNewApartment({ onCloseModal }) {
           <textarea
             name="address"
             id="address"
+            onChange={handleFormDataChange}
             rows={3}
             className="p-1 rounded-md indent-1"
           />
@@ -40,6 +68,7 @@ function AddNewApartment({ onCloseModal }) {
             type="number"
             name="rentalPrice"
             id="rentalPrice"
+            onChange={handleFormDataChange}
             min={0}
             className="p-1 rounded-md indent-1"
           />
@@ -52,6 +81,7 @@ function AddNewApartment({ onCloseModal }) {
             type="number"
             name="numberOfRooms"
             id="numberOfRooms"
+            onChange={handleFormDataChange}
             min={0}
             className="p-1 rounded-md indent-1"
           />
