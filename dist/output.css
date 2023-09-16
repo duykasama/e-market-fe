@@ -538,6 +538,10 @@ video {
   position: absolute;
 }
 
+.start-0 {
+  inset-inline-start: 0px;
+}
+
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -592,6 +596,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
