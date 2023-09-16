@@ -38,21 +38,24 @@ function GridView({ fields, data, title, Modal }) {
         <table className="row-start-2 row-end-6">
           <thead>
             <tr>
+              <th>NO.</th>
               {fields.map((field) => (
-                <th key={v4()}>{field}</th>
+                <th key={v4()}>{field.toUpperCase()}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr key={v4()}>
-                {fields.map((field) => (
-                  <td key={v4()} className="text-center">
-                    {item[field]}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {data &&
+              data.map((item, idx) => (
+                <tr key={v4()}>
+                  <td className="text-center">{idx + 1}</td>
+                  {fields.map((field) => (
+                    <td key={v4()} className="text-center">
+                      {item[field]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
           </tbody>
         </table>
         <div className="row-span-1 row-end-7 flex justify-center items-center">
