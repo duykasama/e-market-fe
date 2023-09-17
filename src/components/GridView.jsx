@@ -20,11 +20,6 @@ function GridView({
 }) {
   const [showModal, setShowModal] = useState(false);
 
-  const handleAddNew = () => {
-    setShowModal(true);
-    console.log("Add new clicked");
-  };
-
   return (
     <>
       {showModal && <Modal onCloseModal={() => setShowModal(false)} />}

@@ -66,7 +66,7 @@ function UploadFiles() {
                   <FontAwesomeIcon
                     onClick={() => handleDelete(file)}
                     icon={faTrash}
-                    className="text-xl text-red-700 cursor-pointer"
+                    className="text-xl text-red-700 cursor-pointer hover:scale-110 transition"
                   />
                 </div>
               ))}
