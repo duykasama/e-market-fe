@@ -60,8 +60,6 @@ function AddNewContract({ onCloseModal }) {
     formData = { ...formData, [event.target.name]: event.target.value };
   };
 
-  console.log(customers);
-
   return (
     <>
       {!isPending && success && (
