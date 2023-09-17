@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-function ApartmentList({ apartments }) {
+function ApartmentList({ apartments, currentPage }) {
   return (
     <section className="h-full grid grid-rows-6">
       <header className="row-span-1 grid grid-cols-4 text-center gap-10">
@@ -15,7 +15,7 @@ function ApartmentList({ apartments }) {
             key={v4()}
             className="row-span-1 grid grid-cols-4 text-center gap-10"
           >
-            <div>{idx + 1}</div>
+            <div>{(currentPage - 1) * 5 + idx + 1}</div>
             <div>{apartment.address}</div>
             <div>{apartment.rentalPrice}</div>
             <div>{apartment.numberOfRooms}</div>

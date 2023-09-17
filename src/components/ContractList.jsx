@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-function ContractList({ contracts }) {
+function ContractList({ contracts, currentPage }) {
   return (
     <section className="h-full grid grid-rows-6">
       <header className="row-span-1 grid grid-cols-5 text-center gap-10">
@@ -16,7 +16,7 @@ function ContractList({ contracts }) {
             key={v4()}
             className="row-span-1 grid grid-cols-5 text-center gap-10"
           >
-            <div>{idx + 1}</div>
+            <div>{(currentPage - 1) * 5 + idx + 1}</div>
             <div>{contract.customer.firstName}</div>
             <div>{contract.apartment.address}</div>
             <div>{contract.startDate}</div>

@@ -5,11 +5,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-function Pagination() {
+function Pagination({ isFirstPage, isLastPage, onPaginationNextPage, onPaginationPrevPage }) {
   return (
     <nav>
       <ul className="flex justify-center items-center gap-4">
-        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black">
+        <li
+          onClick={onPaginationPrevPage}
+          className={`p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black${isFirstPage && " cursor-no-drop pointer-events-none"}`}
+        >
           <Link>
             <FontAwesomeIcon icon={faChevronLeft} />
           </Link>
@@ -23,7 +26,10 @@ function Pagination() {
         <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition font-semibold shadow-sm hover:shadow-black">
           <Link>3</Link>
         </li>
-        <li className="p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black">
+        <li
+          onClick={onPaginationNextPage}
+          className={`p-1 border-slate-700 rounded-md w-12 h-8 text-center cursor-pointer bg-slate-300 hover:scale-110 transition shadow-sm hover:shadow-black${isLastPage && " cursor-no-drop pointer-events-none"}`}
+        >
           <Link>
             <FontAwesomeIcon icon={faChevronRight} />
           </Link>

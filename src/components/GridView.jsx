@@ -14,7 +14,16 @@ import ContractList from "./ContractList";
 import ApartmentList from "./ApartmentList";
 import CustomerList from "./CustomerList";
 
-function GridView({ fields, data, title, Modal }) {
+function GridView({
+  data,
+  title,
+  Modal,
+  isFirstPage,
+  isLastPage,
+  onNextPage,
+  onPrevPage,
+  currentPage,
+}) {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddNew = () => {
@@ -39,35 +48,23 @@ function GridView({ fields, data, title, Modal }) {
           </div>
         </div>
         <div className="row-start-2 row-end-6">
-          {title === "Customers" && <CustomerList customers={data} />}
-          {title === "Apartments" && <ApartmentList apartments={data} />}
-          {title === "Contracts" && <ContractList contracts={data} />}
+          {title === "Customers" && (
+            <CustomerList customers={data} currentPage={currentPage} />
+          )}
+          {title === "Apartments" && (
+            <ApartmentList apartments={data} currentPage={currentPage} />
+          )}
+          {title === "Contracts" && (
+            <ContractList contracts={data} currentPage={currentPage} />
+          )}
         </div>
-        {/* <table className="row-start-2 row-end-6">
-          <thead>
-            <tr>
-              <th>NO.</th>
-              {fields.map((field) => (
-                <th key={v4()}>{field.toUpperCase()}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data &&
-              data.map((item, idx) => (
-                <tr key={v4()}>
-                  <td className="text-center">{idx + 1}</td>
-                  {fields.map((field) => (
-                    <td key={v4()} className="text-center">
-                      {item[field]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-          </tbody>
-        </table> */}
         <div className="row-span-1 row-end-7 flex justify-center items-center">
-          <Pagination />
+          <Pagination
+            isFirstPage={isFirstPage}
+            isLastPage={isLastPage}
+            onPaginationNextPage={onNextPage}
+            onPaginationPrevPage={onPrevPage}
+          />
         </div>
       </div>
     </>

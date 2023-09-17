@@ -4,23 +4,39 @@ import useFetch from "../hooks/useFetch";
 import Loading from "../components/ui/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 function Customers() {
-  const fields = ["firstName", "lastName", "address", "age", "status"];
-  const params = new URLSearchParams({ pageSize: 5, offset: 1 }).toString();
+  const [offset, setOffset] = useState(1);
+  const params = new URLSearchParams({
+    pageSize: 5,
+    offset: offset,
+  }).toString();
   const { data, isPending, error } = useFetch(
     `/customers/pagination?${params}`
   );
+
+  const handleNextPage = () => {
+    setOffset((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    setOffset((prev) => prev - 1);
+  };
 
   return (
     <div className="w-full h-full p-8 flex justify-center items-center">
       {isPending && <Loading />}
       {data && !isPending && (
         <GridView
-          fields={fields}
           data={data.content}
           title={"Customers"}
           Modal={AddNewCustomer}
+          isFirstPage={data.first}
+          isLastPage={data.last}
+          onNextPage={handleNextPage}
+          onPrevPage={handlePrevPage}
+          currentPage={offset}
         />
       )}
       {error && !isPending && (
