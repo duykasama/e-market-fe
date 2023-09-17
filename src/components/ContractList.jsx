@@ -11,6 +11,7 @@ function ContractList({ contracts, currentPage }) {
         <div className="text-xl font-semibold">End date</div>
       </header>
       {contracts &&
+        contracts.length > 0 &&
         contracts.map((contract, idx) => (
           <div
             key={v4()}

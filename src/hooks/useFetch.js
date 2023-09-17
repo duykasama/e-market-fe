@@ -20,6 +20,7 @@ const useFetch = (url) => {
         await new Promise((r) => setTimeout(r, 300));
         setIsPending(false);
       } catch (error) {
+        setIsPending(false);
         setError(error.message);
         console.log("An error occurred: ", error.message);
       }

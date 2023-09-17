@@ -12,6 +12,7 @@ function CustomerList({ customers, currentPage }) {
         <div className="text-xl font-semibold">Status</div>
       </header>
       {customers &&
+        customers.length > 0 &&
         customers.map((customer, idx) => (
           <div
             key={v4()}

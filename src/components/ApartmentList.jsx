@@ -10,6 +10,7 @@ function ApartmentList({ apartments, currentPage }) {
         <div className="text-xl font-semibold">Number of rooms</div>
       </header>
       {apartments &&
+        apartments.length > 0 &&
         apartments.map((apartment, idx) => (
           <div
             key={v4()}

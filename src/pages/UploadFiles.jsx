@@ -55,15 +55,32 @@ function UploadFiles() {
           />
         </div>
         {files && files.length > 0 && (
-          <div className="flex flex-col gap-2">
-            {files.map((file) => (
-              <div key={v4()} className="flex justify-between items-center gap-6">
-                <span>{file.name}</span>
-                <FontAwesomeIcon onClick={() => handleDelete(file)} icon={faTrash} className="text-xl text-red-700 cursor-pointer"/>
-              </div>
-            ))}
-            <button onClick={uploadFiles} className="py-2 px-4 bg-slate-700 text-white font-semibold rounded-lg shadow-md shadow-black hover:shadow-gray-600 active:scale-95 transition mt-8">Upload</button>
-          </div>
+          <section className="flex flex-col gap-2">
+            <div className="grid grid-cols-3 gap-4">
+              {files.map((file) => (
+                <div
+                  key={v4()}
+                  className="flex justify-between items-center gap-6"
+                >
+                  <span>{file.name}</span>
+                  <FontAwesomeIcon
+                    onClick={() => handleDelete(file)}
+                    icon={faTrash}
+                    className="text-xl text-red-700 cursor-pointer"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center items-center">
+
+            <button
+              onClick={uploadFiles}
+              className="w-fit py-2 px-4 bg-slate-700 text-white font-semibold rounded-lg shadow-md shadow-black hover:shadow-gray-600 active:scale-95 transition mt-8"
+            >
+              Upload
+            </button>
+            </div>
+          </section>
         )}
       </div>
     </div>
