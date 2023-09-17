@@ -8,17 +8,21 @@ const useCustomers = () => {
   useEffect(() => {
     const getCustomers = async () => {
       try {
-        const response = await axios.get("/customers", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        });
-
-        setCustomers(response.data);
+        const response = await axios.get(
+          "/customers/pagination?pageSize=5&offset=1",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+console.log(response.data.data);
+        setCustomers(response.data.data.content);
       } catch (error) {
         console.log("An error occurred");
         console.log(error.message);
+        console.log(error);
         setCustomers([]);
       }
     };
