@@ -13,11 +13,13 @@ import { useLocation } from "react-router-dom";
 import ContractList from "./ContractList";
 import ApartmentList from "./ApartmentList";
 import CustomerList from "./CustomerList";
+import Loading from "./ui/Loading";
 
 function GridView({
   data,
   title,
   Modal,
+  isPending,
   isFirstPage,
   isLastPage,
   onNextPage,
@@ -49,13 +51,31 @@ function GridView({
         </div>
         <div className="row-start-2 row-end-6">
           {title === "Customers" && (
-            <CustomerList customers={data} currentPage={currentPage} />
+            <>
+              {isPending ? (
+                <Loading />
+              ) : (
+                <CustomerList customers={data} currentPage={currentPage} />
+              )}
+            </>
           )}
           {title === "Apartments" && (
-            <ApartmentList apartments={data} currentPage={currentPage} />
+            <>
+              {isPending ? (
+                <Loading />
+              ) : (
+                <ApartmentList apartments={data} currentPage={currentPage} />
+              )}
+            </>
           )}
           {title === "Contracts" && (
-            <ContractList contracts={data} currentPage={currentPage} />
+            <>
+              {isPending ? (
+                <Loading />
+              ) : (
+                <ContractList contracts={data} currentPage={currentPage} />
+              )}
+            </>
           )}
         </div>
         <div className="row-span-1 row-end-7 flex justify-center items-center">

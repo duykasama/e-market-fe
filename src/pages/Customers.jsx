@@ -26,12 +26,12 @@ function Customers() {
 
   return (
     <div className="w-full h-full p-8 flex justify-center items-center">
-      {isPending && <Loading />}
-      {data && !isPending && (
+      {data && (
         <GridView
           data={data.content}
           title={"Customers"}
           Modal={AddNewCustomer}
+          isPending={isPending}
           isFirstPage={data.first}
           isLastPage={data.last}
           onNextPage={handleNextPage}

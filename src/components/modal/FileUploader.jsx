@@ -65,7 +65,7 @@ function FileUploader({ setShowFileUploader }) {
                 <FontAwesomeIcon
                   icon={faTrash}
                   onClick={() => handleDelete(file)}
-                  className="text-xl text-red-700 cursor-pointer active:scale-90"
+                  className="text-xl text-red-700 cursor-pointer active:scale-110"
                 />
               </div>
             ))}
