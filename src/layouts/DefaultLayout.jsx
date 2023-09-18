@@ -13,14 +13,14 @@ import NotFound from "../pages/NotFound";
 
 function DefaultLayout() {
   return (
-    <div className="grid grid-cols-6 grid-rows-6 min-h-screen">
-      <div className="bg-slate-600 col-span-1 row-span-full">
+    <div className="grid grid-cols-12 grid-rows-6 min-h-screen">
+      <div className="bg-slate-600 col-span-2 row-span-full">
         <SideBar />
       </div>
-      <div className="bg-slate-200 row-span-1 col-end-7 row-start-1 col-start-2">
+      <div className="bg-slate-200 row-span-1 col-end-13 row-start-1 col-start-3">
         <Header />
       </div>
-      <main className="row-start-2 col-start-2 col-end-7 row-end-7">
+      <main className="row-start-2 col-start-3 col-end-13 row-end-7">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route

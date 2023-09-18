@@ -104,7 +104,7 @@ function AddNewCustomer({ onCloseModal }) {
         !error && (
           <form
             onSubmit={handleAddCustomer}
-            className="absolute bg-slate-700 p-10 rounded-lg shadow-lg shadow-black flex flex-col justify-center items-center modal"
+            className="absolute bg-slate-700 p-10 rounded-lg shadow-lg shadow-black flex flex-col justify-center items-center modal z-10"
           >
             <div className="w-full flex justify-end">
               <button
