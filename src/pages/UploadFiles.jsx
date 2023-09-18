@@ -40,19 +40,19 @@ function UploadFiles() {
   };
 
   const uploadFiles = async () => {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
     setIsPending(true);
     try {
-      const response = await axios.post(
-        "/upload",
-        {
+      const response = await axios.post("/upload", formData, {
+        headers: {
           Accept: "*/*",
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          withCredentials: true,
+          "Content-Type": "multipart/form-data",
         },
-        { data: { files } }
-      );
+        withCredentials: true,
+      });
 
       if (response.data.statusCode === 200) {
         setSuccess(response.data.message);
@@ -61,7 +61,6 @@ function UploadFiles() {
       }
     } catch (e) {
       setError(e.message);
-      console.log(e);
     }
 
     await new Promise((r) => setTimeout(r, 1000));
