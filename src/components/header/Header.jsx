@@ -6,8 +6,8 @@ function Header() {
     console.log("form submitted");
   };
   return (
-    <header className="h-full w-full flex items-center justify-between p-4">
-      <img src={logo} alt="Logo" width={100}/>
+    <header className="h-full w-full flex items-center sm:justify-between justify-end p-4">
+      <img className="sm:block hidden" src={logo} alt="Logo" width={100}/>
       <form onSubmit={handleSearch} className="flex gap-2">
         <input
           type="text"

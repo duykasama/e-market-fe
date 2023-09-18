@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <nav>
-      <ul className="flex flex-col justify-center items-center lg:items-start gap-4 p-8">
+      <ul className="flex flex-col justify-center items-center lg:items-start gap-4 sm:p-8">
         <li className="p-2 w-full rounded-lg hover:bg-slate-800 hover:text-gray-100 max-w-fit lg:max-w-none transition">
           <Link
             to={"/customers"}

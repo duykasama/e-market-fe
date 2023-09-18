@@ -137,7 +137,7 @@ function UploadFiles() {
 
                 {files && files.length > 0 && (
                   <section className="flex flex-col gap-2">
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid sm:grid-cols-3 grid-cols-2 gap-4">
                       {files.map((file) => (
                         <div
                           key={v4()}
