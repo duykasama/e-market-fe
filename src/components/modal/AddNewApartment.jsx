@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "../../lib/api/axios";
 import Loading from "../ui/Loading";
 import { APARTMENTS_ENDPOINT } from "../../data/apiInfo";
+import useAuth from "../../hooks/useAuth";
 
 function AddNewApartment({ onCloseModal }) {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ function AddNewApartment({ onCloseModal }) {
   const [isPending, setIsPending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const { auth } = useAuth();
 
   const handleAddApartment = async (event) => {
     event.preventDefault();
@@ -26,14 +28,16 @@ function AddNewApartment({ onCloseModal }) {
     try {
       const response = await axios.post(
         APARTMENTS_ENDPOINT,
+        formData,
         {
           headers: {
-            Accept: "*/*",
             "Content-Type": "application/json",
+            Authorization: "Bearer " + auth?.accessToken,
           },
           withCredentials: true,
-        },
-        { params: formData }
+          params: formData,
+        }
+        // { params: formData }
       );
       if (response.data.statusCode === 200) {
         setSuccess(true);

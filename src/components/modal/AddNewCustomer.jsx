@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../../lib/api/axios";
 import { useState } from "react";
 import Loading from "../ui/Loading";
+import useAuth from "../../hooks/useAuth";
+import { CUSTOMERS_ENPOINT } from "../../data/apiInfo";
 
 function AddNewCustomer({ onCloseModal }) {
   const [formData, setFormData] = useState({
@@ -19,21 +21,25 @@ function AddNewCustomer({ onCloseModal }) {
   const [isPending, setIsPending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const { auth } = useAuth();
 
   const handleAddCustomer = async (event) => {
     event.preventDefault();
     setIsPending(true);
     try {
       const response = await axios.post(
-        "/customers",
+        CUSTOMERS_ENPOINT,
+        formData,
         {
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
+            Authorization: "Bearer " + auth?.accessToken,
           },
           withCredentials: true,
-        },
-        { params: formData }
+          params: formData,
+        }
+        // { params: formData }
       );
       if (response.data.statusCode === 200) {
         setSuccess(true);

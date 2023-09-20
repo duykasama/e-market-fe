@@ -10,6 +10,8 @@ import { useRef, useState, useTransition } from "react";
 import { v4 } from "uuid";
 import axios from "../lib/api/axios";
 import Loading from "../components/ui/Loading";
+import useAuth from "../hooks/useAuth";
+import { UPLOAD_FILES_ENDPOINT } from "../data/apiInfo";
 
 function UploadFiles() {
   const inputFileRef = useRef(null);
@@ -18,6 +20,7 @@ function UploadFiles() {
   const [success, setSuccess] = useState(null);
   const [isPending, setIsPending] = useState(null);
   const [isTransitionPending, startTransition] = useTransition();
+  const { auth } = useAuth();
 
   const handleFilesChange = (event) => {
     const targetFiles = event.target.files;
@@ -46,12 +49,14 @@ function UploadFiles() {
     });
     setIsPending(true);
     try {
-      const response = await axios.post("/upload", formData, {
+      const response = await axios.post(UPLOAD_FILES_ENDPOINT, formData, {
         headers: {
           Accept: "*/*",
           "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + auth?.accessToken,
         },
         withCredentials: true,
+        params: formData,
       });
 
       if (response.data.statusCode === 200) {
