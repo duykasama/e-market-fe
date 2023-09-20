@@ -27,20 +27,15 @@ function AddNewCustomer({ onCloseModal }) {
     event.preventDefault();
     setIsPending(true);
     try {
-      const response = await axios.post(
-        CUSTOMERS_ENPOINT,
-        formData,
-        {
-          headers: {
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth?.accessToken,
-          },
-          withCredentials: true,
-          params: formData,
-        }
-        // { params: formData }
-      );
+      const response = await axios.post(CUSTOMERS_ENPOINT, formData, {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth?.accessToken,
+        },
+        withCredentials: true,
+        params: formData,
+      });
       if (response.data.statusCode === 200) {
         setSuccess(true);
       } else {

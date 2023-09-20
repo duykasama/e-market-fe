@@ -4,15 +4,17 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMemo, useState, useTransition } from "react";
-import useCustomers from "../../hooks/useCustomers";
-import useApartments from "../../hooks/useApartments";
+import { useState } from "react";
 import { v4 } from "uuid";
 import axios from "../../lib/api/axios";
 import Loading from "../ui/Loading";
 import useFetch from "../../hooks/useFetch";
 import useAuth from "../../hooks/useAuth";
-import { APARTMENTS_ENDPOINT, CONTRACTS_ENDPOINT, CUSTOMERS_ENPOINT } from "../../data/apiInfo";
+import {
+  APARTMENTS_ENDPOINT,
+  CONTRACTS_ENDPOINT,
+  CUSTOMERS_ENPOINT,
+} from "../../data/apiInfo";
 
 function AddNewContract({ onCloseModal }) {
   const { data: customers } = useFetch(CUSTOMERS_ENPOINT);

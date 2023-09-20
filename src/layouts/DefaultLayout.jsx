@@ -5,9 +5,6 @@ import Index from "../pages/Index";
 import Customers from "../pages/Customers";
 import Contracts from "../pages/Contracts";
 import Apartments from "../pages/Apartments";
-import customerList from "../data/customers.json";
-import contractList from "../data/contracts.json";
-import apartmentList from "../data/apartments.json";
 import UploadFiles from "../pages/UploadFiles";
 import NotFound from "../pages/NotFound";
 import RequireAuth from "../components/RequireAuth";
@@ -30,15 +27,15 @@ function DefaultLayout() {
           <Route element={<RequireAuth />}>
             <Route
               path="/customers"
-              element={<Customers customers={customerList} />}
+              element={<Customers />}
             />
             <Route
               path="/contracts"
-              element={<Contracts contracts={contractList} />}
+              element={<Contracts />}
             />
             <Route
               path="/apartments"
-              element={<Apartments apartments={apartmentList} />}
+              element={<Apartments />}
             />
             <Route path="/upload-files" element={<UploadFiles />} />
           </Route>

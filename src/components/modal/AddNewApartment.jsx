@@ -37,7 +37,6 @@ function AddNewApartment({ onCloseModal }) {
           withCredentials: true,
           params: formData,
         }
-        // { params: formData }
       );
       if (response.data.statusCode === 200) {
         setSuccess(true);
