@@ -10,6 +10,10 @@ import contractList from "../data/contracts.json";
 import apartmentList from "../data/apartments.json";
 import UploadFiles from "../pages/UploadFiles";
 import NotFound from "../pages/NotFound";
+import RequireAuth from "../components/RequireAuth";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import SignOut from "../pages/SignOut";
 
 function DefaultLayout() {
   return (
@@ -23,19 +27,24 @@ function DefaultLayout() {
       <main className="row-start-2 sm:col-start-3 col-start-2 col-end-13 row-end-7">
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route
-            path="/customers"
-            element={<Customers customers={customerList} />}
-          />
-          <Route
-            path="/contracts"
-            element={<Contracts contracts={contractList} />}
-          />
-          <Route
-            path="/apartments"
-            element={<Apartments apartments={apartmentList} />}
-          />
-          <Route path="/upload-files" element={<UploadFiles />} />
+          <Route element={<RequireAuth />}>
+            <Route
+              path="/customers"
+              element={<Customers customers={customerList} />}
+            />
+            <Route
+              path="/contracts"
+              element={<Contracts contracts={contractList} />}
+            />
+            <Route
+              path="/apartments"
+              element={<Apartments apartments={apartmentList} />}
+            />
+            <Route path="/upload-files" element={<UploadFiles />} />
+          </Route>
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-out" element={<SignOut />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

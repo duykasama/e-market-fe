@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import axios from "../../lib/api/axios";
 import Loading from "../ui/Loading";
+import { APARTMENTS_ENDPOINT } from "../../data/apiInfo";
 
 function AddNewApartment({ onCloseModal }) {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ function AddNewApartment({ onCloseModal }) {
     setIsPending(true);
     try {
       const response = await axios.post(
-        "/apartments",
+        APARTMENTS_ENDPOINT,
         {
           headers: {
             Accept: "*/*",

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "../lib/api/axios";
+import useAuth from "./useAuth";
 
 const useFetch = (endpoint) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+  const { auth } = useAuth();
 
   useEffect(() => {
     const getData = async () => {
@@ -12,6 +14,7 @@ const useFetch = (endpoint) => {
         const response = await axios.get(endpoint, {
           headers: {
             "Content-Type": "application/json",
+            "Authorization": "Bearer " + auth?.accessToken
           },
           withCredentials: true,
         });
@@ -22,7 +25,6 @@ const useFetch = (endpoint) => {
       } catch (error) {
         setIsPending(false);
         setError(error.message);
-        console.log("An error occurred: ", error.message);
       }
     };
 
