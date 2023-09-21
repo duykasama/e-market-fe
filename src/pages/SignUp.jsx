@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../lib/api/axios";
 import { REGISTER_ENDPOINT } from "../data/apiInfo";
 import Loading from "../components/ui/Loading";
@@ -19,8 +19,6 @@ function SignUp() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const location = useLocation();
-  const navigate = useNavigate();
   const passwordPattern =
     /^(?=.*[0-9])(?=.*[!@#$%^&*()-_+=])(?=.*[A-Z]).{12,}$/;
   const [passwordWarning, setPasswordWarning] = useState("");
