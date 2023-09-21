@@ -6,7 +6,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { v4 } from "uuid";
-import axios from "../../lib/api/axios";
 import Loading from "../ui/Loading";
 import useFetch from "../../hooks/useFetch";
 import useAuth from "../../hooks/useAuth";
@@ -15,6 +14,7 @@ import {
   CONTRACTS_ENDPOINT,
   CUSTOMERS_ENPOINT,
 } from "../../data/apiInfo";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 function AddNewContract({ onCloseModal }) {
   const { data: customers } = useFetch(CUSTOMERS_ENPOINT);
@@ -31,12 +31,13 @@ function AddNewContract({ onCloseModal }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
 
   const handleAddContract = async (event) => {
     event.preventDefault();
     setIsPending(true);
     try {
-      const response = await axios.post(CONTRACTS_ENDPOINT, formData, {
+      const response = await axiosPrivate.post(CONTRACTS_ENDPOINT, formData, {
         headers: {
           Accept: "*/*",
           "Content-Type": "application/json",

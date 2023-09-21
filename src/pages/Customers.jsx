@@ -8,12 +8,14 @@ import { CUSTOMERS_ENPOINT } from "../data/apiInfo";
 
 function Customers() {
   const [offset, setOffset] = useState(1);
+  const [reload, setReload] = useState(false);
   const params = new URLSearchParams({
     pageSize: 5,
     offset: offset,
   }).toString();
   const { data, isPending, error } = useFetch(
-    `${CUSTOMERS_ENPOINT}/pagination?${params}`
+    `${CUSTOMERS_ENPOINT}/pagination?${params}`,
+    reload
   );
 
   const handleNextPage = () => {
@@ -38,6 +40,7 @@ function Customers() {
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
           currentPage={offset}
+          onReload={setReload}
         />
       )}
       {error && !isPending && (

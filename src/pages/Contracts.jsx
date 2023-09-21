@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GridView from "../components/GridView";
 import AddNewContract from "../components/modal/AddNewContract";
-import Loading from "../components/ui/Loading";
 import { faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
@@ -9,12 +8,14 @@ import { CONTRACTS_ENDPOINT } from "../data/apiInfo";
 
 function Contracts() {
   const [offset, setOffset] = useState(1);
+  const [reload, setReload] = useState(false);
   const params = new URLSearchParams({
     pageSize: 5,
     offset: offset,
   }).toString();
   const { data, isPending, error } = useFetch(
-    `${CONTRACTS_ENDPOINT}/pagination?${params}`
+    `${CONTRACTS_ENDPOINT}/pagination?${params}`,
+    reload
   );
 
   const handleNextPage = () => {
@@ -39,6 +40,7 @@ function Contracts() {
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
           currentPage={offset}
+          onReload={setReload}
         />
       )}
       {error && !isPending && (

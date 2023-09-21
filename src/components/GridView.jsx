@@ -18,12 +18,20 @@ function GridView({
   onPrevPage,
   currentPage,
   totalPages,
+  onReload,
 }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      {showModal && <Modal onCloseModal={() => setShowModal(false)} />}
+      {showModal && (
+        <Modal
+          onCloseModal={() => {
+            setShowModal(false);
+            onReload((prev) => !prev);
+          }}
+        />
+      )}
       <div className="p-4 bg-slate-400 rounded-lg sm:w-full h-full grid grid-rows-6 gap-4 shadow-lg shadow-gray-600">
         <div className="flex sm:justify-between justify-end items-center row-span-1">
           <h2 className="text-4xl font-semibold sm:block hidden">{title}</h2>
