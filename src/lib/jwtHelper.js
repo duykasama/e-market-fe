@@ -8,6 +8,7 @@ export const getExpirationTime = (token) => {
     },
   };
 
-  const decodedPayload = jwtPayload(request)
+  const decodedPayload = jwtPayload(request);
   console.log(decodedPayload);
+  return decodedPayload;
 };

@@ -21,16 +21,16 @@ function ContractList({ contracts, currentPage }) {
               {(currentPage - 1) * 5 + idx + 1}
             </div>
             <div className="flex items-center justify-center">
-              {contract.customer.firstName}
+              {contract?.customer?.firstName}
             </div>
             <div className="flex items-center justify-center">
-              {contract.apartment.address}
+              {contract?.apartment?.address}
             </div>
             <div className="flex items-center justify-center">
-              {contract.startDate}
+              {contract?.startDate}
             </div>
             <div className="flex items-center justify-center">
-              {contract.endDate}
+              {contract?.endDate}
             </div>
           </div>
         ))}

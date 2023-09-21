@@ -1,7 +1,6 @@
 import GridView from "../components/GridView";
 import AddNewCustomer from "../components/modal/AddNewCustomer";
 import useFetch from "../hooks/useFetch";
-import Loading from "../components/ui/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceSadTear } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";

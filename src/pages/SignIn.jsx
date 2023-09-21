@@ -13,8 +13,9 @@ function SignIn() {
   const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location?.state?.from?.pathname || "/";
-  const { auth, setAuth } = useAuth();
+  const from = location.state?.from?.pathname || "/";
+
+  const { setAuth } = useAuth();
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -22,25 +23,36 @@ function SignIn() {
     try {
       const response = await axios.post(
         AUTH_ENDPOINT,
+        formData,
         {
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        },
-        { params: formData }
+          params: formData,
+        }
       );
 
       if (response.data.statusCode === 200) {
-        setAuth((prev) => ({ ...prev, accessToken: response.data.data }));
-        console.log("Auth token: ", auth?.accessToken);
+        const accessToken = response?.data?.data;
+        setAuth({
+          user: formData.email,
+          pwd: formData.password,
+          roles: ["USER"],
+          accessToken,
+        });
         navigate(from, { replace: true });
       } else {
         throw new Exception("Wrong username or password");
       }
     } catch (e) {
-      setError("Wrong username or password");
+      console.error(e);
+      if (e.code === "ERR_NETWORK") {
+        setError("Cannot connect to server");
+      } else {
+        setError("Wrong username or password");
+      }
     }
     await new Promise((r) => setTimeout(r, 500));
     setFormData({ email: "", password: "" });
@@ -66,10 +78,10 @@ function SignIn() {
               className="p-2 rounded-md -mt-2 -mr-2 hover:bg-slate-400 cursor-pointer"
             />
           </div>
-          <div className="flex flex-col justify-center items-center font-semibold">
+          <div className="flex flex-col justify-center items-center font-semibold gap-4">
             <FontAwesomeIcon
               icon={faCircleXmark}
-              className="text-red-600 text-4xl bg-white rounded-full"
+              className="text-red-600 text-5xl bg-white rounded-full"
             />
             <p>{error}</p>
           </div>

@@ -11,6 +11,7 @@ import RequireAuth from "../components/RequireAuth";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import SignOut from "../pages/SignOut";
+import Unauthorized from "../pages/Unauthorized";
 
 function DefaultLayout() {
   return (
@@ -24,24 +25,16 @@ function DefaultLayout() {
       <main className="row-start-2 sm:col-start-3 col-start-2 col-end-13 row-end-7">
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route element={<RequireAuth />}>
-            <Route
-              path="/customers"
-              element={<Customers />}
-            />
-            <Route
-              path="/contracts"
-              element={<Contracts />}
-            />
-            <Route
-              path="/apartments"
-              element={<Apartments />}
-            />
+          <Route element={<RequireAuth allowedRoles={["USER"]} />}>
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/contracts" element={<Contracts />} />
+            <Route path="/apartments" element={<Apartments />} />
             <Route path="/upload-files" element={<UploadFiles />} />
           </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-out" element={<SignOut />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
