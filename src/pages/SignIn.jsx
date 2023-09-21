@@ -38,7 +38,6 @@ function SignIn() {
         const accessToken = response?.data?.data;
         setAuth({
           user: formData.email,
-          pwd: formData.password,
           roles: ["USER"],
           accessToken,
         });
