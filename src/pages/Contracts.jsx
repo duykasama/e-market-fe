@@ -29,12 +29,13 @@ function Contracts() {
     <div className="w-full h-full p-8 flex justify-center items-center">
       {data && (
         <GridView
-          data={data.content}
+          data={data?.content}
           title={"Contracts"}
           Modal={AddNewContract}
           isPending={isPending}
-          isFirstPage={data.first}
-          isLastPage={data.last}
+          isFirstPage={data?.first}
+          isLastPage={data?.last}
+          totalPages={data?.totalPages}
           onNextPage={handleNextPage}
           onPrevPage={handlePrevPage}
           currentPage={offset}

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "./Pagination";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ContractList from "./ContractList";
 import ApartmentList from "./ApartmentList";
 import CustomerList from "./CustomerList";
@@ -17,6 +17,7 @@ function GridView({
   onNextPage,
   onPrevPage,
   currentPage,
+  totalPages,
 }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -71,6 +72,8 @@ function GridView({
             isLastPage={isLastPage}
             onPaginationNextPage={onNextPage}
             onPaginationPrevPage={onPrevPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
           />
         </div>
       </div>
